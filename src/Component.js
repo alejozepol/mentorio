@@ -5,7 +5,11 @@ class Component extends React.Component {
     super(props)
 
     this.state = {
-      data: [],
+      data: {
+        current: {
+          clouds: 0
+        }
+      },
     }
   }
 
@@ -33,14 +37,14 @@ class Component extends React.Component {
 
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    console.log(lat, lon);
+    /*     console.log(lat, lon); */
     await this.getData(lat, lon);
 
   }
 
   getData = async (lat, lon) => {
 
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     const latitude = lat;
     const longitude = lon;
@@ -55,7 +59,7 @@ class Component extends React.Component {
         data: data,
       });
 
-    } catch(error) {
+    } catch (error) {
       console.log(error.message);
     }
   }
@@ -63,8 +67,12 @@ class Component extends React.Component {
   render = () => {
     console.log(this.state.data)
     // console.log(this.state.data.daily[0]);
-    // console.log(this.state.data.current.clouds)
-    return(
+        console.log(this.state.data.current.clouds)
+
+    setTimeout(() => {
+      console.log(this.state.data.current.clouds)
+    }, 1200);
+    return (
 
       <div></div>
     );
